@@ -1,45 +1,50 @@
 package top.continew.admin.CommonUse.model.entity;
 
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-
-import java.io.Serial;
 import java.time.LocalDateTime;
 import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
-import top.continew.starter.extension.crud.model.entity.BaseDO;
 
 /**
  * <p>
- * 
+ * 学生签到记录表
  * </p>
  *
  * @author weiwei
- * @since 2024-10-11
+ * @since 2024-10-12
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-@TableName("home_sign_in")
-public class SignIn extends BaseDO {
+@Accessors(chain = true)
+@TableName("student_check_ins")
+public class StudentCheckIns implements Serializable {
 
-    @Serial
     private static final long serialVersionUID = 1L;
 
-    @TableId(value = "id", type = IdType.AUTO)
-    private Long id;
+    /**
+     * 签到记录ID，主键
+     */
+    @TableId(value = "record_id", type = IdType.AUTO)
+    private Long recordId;
 
-    @TableField("user_id")
-    private Long userId;
+    /**
+     * 学生ID，外键
+     */
+    private Long studentId;
 
-    @TableField("nickname")
-    private String nickname;
+    /**
+     * 签到活动ID，外键
+     */
+    private Long checkInId;
 
-    @TableField("create_time")
-    private LocalDateTime createTime;
+    /**
+     * 学生签到时间
+     */
+    private LocalDateTime checkInTime;
 
 
 }
